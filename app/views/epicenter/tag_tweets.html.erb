@@ -1,0 +1,8 @@
+<h1><%= @tag.phrase %></h1>
+
+<% @tag.tweets.order(created_at: :desc).each do |tweet| %>
+	<div class="well">
+		<p> <%= link_to tweet.user.username, show_user_path(id: tweet.user.id) %> </p>
+		<p> <%= tweet.message.html_safe %></p>
+	</div>
+<% end %>
