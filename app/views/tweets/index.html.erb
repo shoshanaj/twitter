@@ -16,7 +16,7 @@
       <tr>
         <td>
           <% if tweet.user.avatar.url.blank? == false %>
-            <%= image_tag tweet.user.avatar.url, class: "img-circle" %>
+            <%= image_tag tweet.user.avatar.url, class: "img-circle", width: "25%" %>
           <% end %>
           </td>
         <td><%= tweet.message %></td>
