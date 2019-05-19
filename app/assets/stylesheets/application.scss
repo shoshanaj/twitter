@@ -22,7 +22,8 @@ body {
 }
 
 .well {
-	background-color: teal;
+	background-color: white;
+	margin-bottom: 0px;
 }
 
 .twitter-header {
@@ -67,4 +68,13 @@ body {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+a:hover {
+	background-color: transparent;
+}
+
+.tweet-user a:visited,
+.tweet-user a {
+	color: black;
 }

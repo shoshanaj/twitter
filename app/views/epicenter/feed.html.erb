@@ -13,17 +13,27 @@
 						<% end %>
 					</div>
 					<div class="col-md-8">
-						<h3 class="user-name"><%= current_user.username %></h3>
-						 @<%= current_user.username %>
+						<%= link_to show_user_path(id: current_user.id) do %>
+						<h3 class="user-name"><%= current_user.username %></h3> 
+						<% end %>
+						 <%= link_to show_user_path(id: current_user.id) do %>
+						 @<%= current_user.username %> 
+						 <% end %>
 					</div>
 					
 				</div>
 				<div class="row">
-					<div class="col-md-4">?
+					<div class="col-md-4">
+						Tweets<br>
+						?
 					</div>
-					<div class="col-md-4">?
+					<div class="col-md-4">
+						<%= link_to "Following", following_path(id: current_user.id) %><br>
+						?
 					</div>
-					<div class="col-md-4">?
+					<div class="col-md-4">
+						<%= link_to "Followers", followers_path(id: current_user.id) %><br>
+						?
 					</div>
 				</div>
 				
@@ -34,11 +44,34 @@
 		<div>
 			<% @following_tweets.each do |tweet| %>
 				<div class="well">
-					<p>@<%= link_to tweet.user.username, show_user_path(id: tweet.user.id) %></p>
-					<p><%= tweet.message.html_safe %></p>
-					<p><%= time_ago_in_words(tweet.created_at) if Time.now - tweet.created_at < 86400 %></p>
+					<div class="row">
+						<div class="col-md-3"> 
+							<%= image_tag current_user.avatar.url, size:72, class: "img-circle"%>
+						</div>
+						<div class="col-md-9">
+							<div>
+								<strong class="tweet-user"><%= link_to tweet.user.name, show_user_path(id: tweet.user.id) %></strong>
+								@<%= link_to tweet.user.username, show_user_path(id: tweet.user.id) %>
+								<%= time_ago_in_words(tweet.created_at) if Time.now - tweet.created_at < 1.day %>
+								<%= tweet.created_at.strftime('%b%e') if Time.now - tweet.created_at >= 1.day %>
+							</div>
+							<%= tweet.message.html_safe %>
 
-					<p><%= tweet.created_at.strftime('%b%e') if Time.now - tweet.created_at >= 86400 %></p>
+
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+						</div>
+						<div class="col-md-9">
+							<i class="glyphicon glyphicon-thumbs-up"></i> coming soon
+
+						</div>
+					</div>
+
+					
+					
+					
 				</div>
 			<% end %>
 		</div>
